@@ -51,10 +51,10 @@ Marcar `[x]` somente quando a dona confirmar que funciona.
 
 ### 3.1 Rotas
 
-- [ ] Rota individual por projeto: `/projetos/:slug`
-- [ ] Página 404 amigável
-- [ ] Página amigável para falha no carregamento da API
-- [ ] Link compartilhado abre direto na página certa, inclusive com refresh (`vercel.json` já criado; falta testar com as rotas)
+- [x] Rota individual por projeto: `/projetos/:slug`
+- [x] Página 404 amigável
+- [x] Página amigável para falha no carregamento da API
+- [x] Link compartilhado abre direto na página certa, inclusive com refresh (`vercel.json` já criado; falta testar com as rotas)
 
 ### 3.2 Estados de carregamento
 
@@ -82,7 +82,7 @@ Marcar `[x]` somente quando a dona confirmar que funciona.
 
 ### 3.6 Preferências do visitante
 
-- [ ] Tema claro/escuro persistido (base de cores pronta; falta o botão e a persistência)
+- [x] Tema claro/escuro persistido (base de cores pronta; falta o botão e a persistência)
 
 ### 3.7 Interface
 
@@ -90,6 +90,7 @@ Marcar `[x]` somente quando a dona confirmar que funciona.
 - [ ] Componentes reaproveitados (mesmo `Button` e `Card`)
 - [ ] Identidade visual própria (paleta definida, ver 6.1)
 - [ ] Elemento 3D interativo na home
+- [ ] Dashboard e cena 3D com lazy loading (páginas já carregadas com `React.lazy`; dashboard e 3D ainda não existem)
 
 ### 3.8 Performance
 
@@ -148,7 +149,7 @@ Cada linha traz as alternativas comparadas, o critério e o que se aceita perder
 | Qualidade            | **ESLint + Prettier + Husky + lint-staged + commitlint** | Biome                                        | Ecossistema maduro, exatamente o padrão pedido pela atividade                                  | Mais arquivos de configuração                                  |
 | Deploy               | **Vercel**                                               | Netlify, Hostinger                           | Exigido na entrega; deploy automático por push; detecta Vite sozinha                           | Lock-in leve                                                   |
 
-Ainda **não instalados** (entram na branch da feature correspondente, para manter o histórico limpo): `react-router-dom`, `@tanstack/react-query`, `react-hook-form`, `zod`, `@hookform/resolvers`, `@supabase/supabase-js`, `@emailjs/browser`, `vitest`, `jsdom`, `@testing-library/*`, React Three Fiber.
+Ainda **não instalados** (entram na branch da feature correspondente, para manter o histórico limpo): `@tanstack/react-query`, `react-hook-form`, `zod`, `@hookform/resolvers`, `@supabase/supabase-js`, `@emailjs/browser`, `vitest`, `jsdom`, `@testing-library/*`, React Three Fiber.
 
 ## 5. Arquitetura
 
@@ -254,7 +255,6 @@ Regras:
 - Texto sobre vidro com contraste mínimo de 4,5:1; usar `text-foreground` ou `text-muted`.
 - Todo elemento de vidro usa `glass` junto com `border` e um arredondamento (`rounded-2xl`).
 - Fallback sólido quando não há suporte a `backdrop-filter` ou com `prefers-reduced-transparency`.
-- Pendência: no tema claro, o "404" não deve usar laranja como cor de texto (regra da paleta).
 
 ## 7. Variáveis de ambiente
 
@@ -306,7 +306,7 @@ Regras: um assunto por commit; commits pequenos e frequentes ao longo dos dias; 
 1. ✅ Setup inicial: Vite, TypeScript, ESLint, Prettier, Husky, lint-staged, commitlint (entrou direto na `main`)
 2. ✅ `chore/...`: Tailwind CSS
 3. ✅ `chore/folder-structure`: estrutura de pastas, limpeza, `.env.example`, `vercel.json`
-4. 🔄 `feature/routing-and-layout`: paleta, React Router, rotas, 404, erro de API, lazy por rota
+4. ✅ `feature/routing-and-layout`: paleta, React Router, rotas, 404, erro de API, lazy por rota
 5. `feature/theme-toggle`
 6. `feature/github-projects` (API, cards, skeleton, erro, vazio, cache)
 7. `feature/project-detail`
@@ -343,15 +343,16 @@ Regras: um assunto por commit; commits pequenos e frequentes ao longo dos dias; 
 
 Itens que devem estar **versionados no repositório**:
 
-| Item                    | Arquivo/local                                                        | Para que serve                                                           |
-| ----------------------- | -------------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| Instruções do projeto   | `CLAUDE.md` (este arquivo)                                           | A IA lê arquitetura, convenções, commits e branches antes de cada tarefa |
-| Convenções para humanos | `README.md`                                                          | As mesmas regras, para quem abre o repositório                           |
-| Guardrails automáticos  | `eslint.config.js`, `.prettierrc`, `commitlint.config.js`, `.husky/` | Mesmo que a IA erre, o hook bloqueia código ou commit fora do padrão     |
-| Configuração do editor  | `.vscode/settings.json`, `.vscode/extensions.json`                   | Formata ao salvar e recomenda as extensões                               |
-| Skills (opcional)       | `.claude/skills/`                                                    | Receitas repetíveis (ex.: "criar feature nova")                          |
-| MCPs (opcional)         | `.mcp.json`                                                          | Ex.: GitHub, para ler issues e PRs                                       |
-| Agentes (opcional)      | `.claude/agents/`                                                    | Ex.: revisor de PR que confere o checklist da seção 3                    |
+| Item                    | Arquivo/local                                                                         | Para que serve                                                                                                                                                           |
+| ----------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Instruções do projeto   | `CLAUDE.md` (este arquivo)                                                            | A IA lê arquitetura, convenções, commits e branches antes de cada tarefa                                                                                                 |
+| Convenções para humanos | `README.md`                                                                           | As mesmas regras, para quem abre o repositório                                                                                                                           |
+| Guardrails automáticos  | `eslint.config.js`, `.prettierrc`, `commitlint.config.js`, `.husky/`                  | Mesmo que a IA erre, o hook bloqueia código ou commit fora do padrão                                                                                                     |
+| Configuração do editor  | `.vscode/settings.json`, `.vscode/extensions.json`                                    | Formata ao salvar e recomenda as extensões                                                                                                                               |
+| Skills (opcional)       | `.claude/skills/`                                                                     | Receitas repetíveis (ex.: "criar feature nova")                                                                                                                          |
+| MCPs (opcional)         | `.mcp.json`                                                                           | Ex.: GitHub, para ler issues e PRs                                                                                                                                       |
+| Agentes (opcional)      | `.claude/agents/`                                                                     | Ex.: revisor de PR que confere o checklist da seção 3                                                                                                                    |
+| D10                     | Rotas com `BrowserRouter` + `<Routes>` e `React.lazy` + `Suspense` dentro do `Layout` | Simples de explicar, divide por rota (um arquivo JS por página) e mantém o cabeçalho na tela durante o carregamento. Alternativa: `createBrowserRouter` com data routers | Loaders e actions do router de dados (o TanStack Query cobre a busca de dados) |
 
 Preencher quando definido:
 
@@ -366,18 +367,20 @@ Evidência real do harness funcionando (usar no vídeo): na Etapa 1, o commit fo
 
 ## 12. Decisões tomadas durante o projeto
 
-| #   | Decisão                                                                                   | Motivo                                                                                                                                                                                                                          | O que aceitamos perder                                            |
-| --- | ----------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| D1  | Fixar **TypeScript 5** (`npm install -D typescript@5`)                                    | O template trouxe o TS 7.0.2, e o `typescript-eslint` exige versão abaixo da 6.1; o npm abortou com `ERESOLVE` e o `@vitejs/plugin-react` não foi instalado. Evitamos `--force`/`--legacy-peer-deps` porque escondem o conflito | Recursos da versão 7                                              |
-| D2  | Setup inicial **direto na `main`**; branch renomeada de `chore/setup-project` para `main` | O repositório estava vazio, então o primeiro push criou a única branch como padrão e não havia base para um PR                                                                                                                  | Um PR para o setup inicial                                        |
-| D3  | **Tailwind v4** com `@tailwindcss/vite`, sem `tailwind.config.js`                         | Configuração mínima; tokens declarados com `@theme` no próprio CSS                                                                                                                                                              | Plugins antigos que exigem config em JS                           |
-| D4  | `subject-case` do commitlint **desligado**                                                | As descrições dos commits são em português e a regra padrão bloqueia caixas válidas                                                                                                                                             | Verificação de caixa da descrição                                 |
-| D5  | `.gitattributes` com `.husky/* text eol=lf`                                               | No Windows, CRLF nos hooks causa falha ao executar                                                                                                                                                                              | Nenhuma relevante                                                 |
-| D6  | `vercel.json` com rewrite de todas as rotas para `/index.html`                            | Numa SPA, abrir ou atualizar `/projetos/x` daria 404 do servidor; assim o React Router decide a página. A Vercel serve antes os arquivos reais (CSS, imagens)                                                                   | Nenhuma relevante                                                 |
-| D7  | Estrutura **por funcionalidade** (`features/`) com `components/` só para UI genérica      | Alterar uma funcionalidade mexe numa pasta só; facilita explicar no vídeo                                                                                                                                                       | Estrutura um pouco maior que a por tipo de arquivo                |
-| D8  | Paleta preto/branco/laranja/rosa bebê, texto preto sobre laranja e rosa                   | Contraste mínimo 4,5:1 (acessibilidade e Lighthouse)                                                                                                                                                                            | Texto branco sobre botões coloridos                               |
-| D9  | Tema escuro por classe CSS (`dark`) e não por `prefers-color-scheme`                      | Permite escolha manual persistida (requisito 6)                                                                                                                                                                                 | Um pouco mais de código (Context + localStorage)                  |
-| D11 | Glassmorphism com utilitário `glass` + `GlassCard` + fundo ambiente em gradientes radiais | Identidade visual desejada pela dona; gradiente é barato e protege o Lighthouse mobile; vidro limitado a cartões e cabeçalho                                                                                                    | Efeito de vidro em áreas grandes e vários níveis de transparência |
+| #          | Decisão                                                                                                                                                                                       | Motivo                                                                                                                                                                                                                          | O que aceitamos perder                                                                                             |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| D1         | Fixar **TypeScript 5** (`npm install -D typescript@5`)                                                                                                                                        | O template trouxe o TS 7.0.2, e o `typescript-eslint` exige versão abaixo da 6.1; o npm abortou com `ERESOLVE` e o `@vitejs/plugin-react` não foi instalado. Evitamos `--force`/`--legacy-peer-deps` porque escondem o conflito | Recursos da versão 7                                                                                               |
+| D2         | Setup inicial **direto na `main`**; branch renomeada de `chore/setup-project` para `main`                                                                                                     | O repositório estava vazio, então o primeiro push criou a única branch como padrão e não havia base para um PR                                                                                                                  | Um PR para o setup inicial                                                                                         |
+| D3         | **Tailwind v4** com `@tailwindcss/vite`, sem `tailwind.config.js`                                                                                                                             | Configuração mínima; tokens declarados com `@theme` no próprio CSS                                                                                                                                                              | Plugins antigos que exigem config em JS                                                                            |
+| D4         | `subject-case` do commitlint **desligado**                                                                                                                                                    | As descrições dos commits são em português e a regra padrão bloqueia caixas válidas                                                                                                                                             | Verificação de caixa da descrição                                                                                  |
+| 01/11/2026 | `feature/routing-and-layout`                                                                                                                                                                  | React Router com rotas `/`, `/projetos/:slug`, `/erro` e 404; lazy loading por página; páginas e layout em glassmorphism                                                                                                        | 3.1, 3.8, 4, 12 (D10), 14                                                                                          |
+| D5         | `.gitattributes` com `.husky/* text eol=lf`                                                                                                                                                   | No Windows, CRLF nos hooks causa falha ao executar                                                                                                                                                                              | Nenhuma relevante                                                                                                  |
+| D6         | `vercel.json` com rewrite de todas as rotas para `/index.html`                                                                                                                                | Numa SPA, abrir ou atualizar `/projetos/x` daria 404 do servidor; assim o React Router decide a página. A Vercel serve antes os arquivos reais (CSS, imagens)                                                                   | Nenhuma relevante                                                                                                  |
+| D7         | Estrutura **por funcionalidade** (`features/`) com `components/` só para UI genérica                                                                                                          | Alterar uma funcionalidade mexe numa pasta só; facilita explicar no vídeo                                                                                                                                                       | Estrutura um pouco maior que a por tipo de arquivo                                                                 |
+| D8         | Paleta preto/branco/laranja/rosa bebê, texto preto sobre laranja e rosa                                                                                                                       | Contraste mínimo 4,5:1 (acessibilidade e Lighthouse)                                                                                                                                                                            | Texto branco sobre botões coloridos                                                                                |
+| D9         | Tema escuro por classe CSS (`dark`) e não por `prefers-color-scheme`                                                                                                                          | Permite escolha manual persistida (requisito 6)                                                                                                                                                                                 | Um pouco mais de código (Context + localStorage)                                                                   |
+| D11        | Glassmorphism com utilitário `glass` + `GlassCard` + fundo ambiente em gradientes radiais                                                                                                     | Identidade visual desejada pela dona; gradiente é barato e protege o Lighthouse mobile; vidro limitado a cartões e cabeçalho                                                                                                    | Efeito de vidro em áreas grandes e vários níveis de transparência                                                  |
+| D12        | Tema com **Context + `localStorage`**, aplicado por um script inline no `index.html` antes da renderização; na primeira visita segue o tema do sistema, e a escolha manual passa a prevalecer | O script evita o clarão de tema errado e o salto visual ao recarregar; salvar só no clique preserva a preferência do sistema até o visitante decidir. Alternativas: Zustand, biblioteca de tema                                 | Um script inline no `<head>` (poucos bytes) e o contexto dividido em 3 arquivos por causa da regra `react-refresh` |
 
 ## 13. Pendências que dependem da dona (a IA deve pedir antes de usar)
 
@@ -398,6 +401,7 @@ Evidência real do harness funcionando (usar no vídeo): na Etapa 1, o commit fo
 | 01/11/2026 | `chore/folder-structure`     | Estrutura de pastas, `.env.example`, `vercel.json`, limpeza do template                                       | 3.12, 3.13, 5, 7, 12 (D6, D7)               |
 | 01/11/2026 | `feature/routing-and-layout` | Paleta de cores e tokens de tema; reescrita completa deste arquivo com a regra de manutenção                  | 0, 6.1, 12 (D8, D9), 13, 14                 |
 | 01/11/2026 | `feature/routing-and-layout` | Base glassmorphism (utilitário, GlassCard, fundo ambiente) e páginas Home, ProjectDetail, NotFound e ApiError | 3.7, 5.1, 6.1, 12 (D11), 14                 |
+| 01/11/2026 | `feature/theme-toggle`       | ThemeProvider, useTheme e ThemeToggle; script de tema no `index.html`; ajuste de contraste do 404             | 3.1, 3.6, 6.1, 8.3, 12 (D12), 14            |
 
 ## 15. Roteiro do vídeo (máx. 8 min, rosto e tela visíveis)
 
