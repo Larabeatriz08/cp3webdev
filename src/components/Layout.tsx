@@ -4,8 +4,9 @@ import PageLoader from './PageLoader'
 
 export default function Layout() {
   return (
-    <div className="flex min-h-screen flex-col bg-background text-foreground">
-      <header className="border-b border-line">
+    <div className="flex min-h-screen flex-col text-foreground">
+      <div className="ambient" aria-hidden="true" />
+      <header className="glass sticky top-0 z-10 border-b">
         <nav
           className="mx-auto flex max-w-5xl items-center justify-between px-4 py-4"
           aria-label="Principal"
