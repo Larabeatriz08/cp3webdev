@@ -1,0 +1,13 @@
+import type { ComponentProps } from 'react'
+import { buttonClasses, type ButtonVariant } from './buttonStyles'
+
+type ButtonProps = ComponentProps<'button'> & { variant?: ButtonVariant }
+
+export default function Button({
+  variant = 'primary',
+  className = '',
+  type = 'button',
+  ...props
+}: ButtonProps) {
+  return <button type={type} className={buttonClasses(variant, className)} {...props} />
+}
