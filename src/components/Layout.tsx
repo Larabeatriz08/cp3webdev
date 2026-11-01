@@ -1,5 +1,6 @@
 import { Suspense } from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
+import ThemeToggle from '../features/theme/ThemeToggle'
 import PageLoader from './PageLoader'
 
 export default function Layout() {
@@ -14,6 +15,7 @@ export default function Layout() {
           <NavLink to="/" className="font-bold">
             Portfólio
           </NavLink>
+          <ThemeToggle />
         </nav>
       </header>
       <main className="mx-auto w-full max-w-5xl flex-1 px-4 py-8">
