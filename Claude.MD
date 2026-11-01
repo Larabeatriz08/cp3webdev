@@ -143,7 +143,7 @@ Ainda **não instalados** (entram na branch da feature correspondente, para mant
 
 ```
 src/
-├── components/        # UI genérica e reutilizável (Button, Card, Skeleton, Spinner, Input)
+├── components/        # UI genérica e reutilizável (Button, Card, Skeleton, Spinner, Input) GlassCard, Layout, PageLoader, ButtonLink
 ├── features/          # Organização por funcionalidade
 │   ├── projects/      #   ProjectCard, ProjectList, hooks/useProjects, services/githubApi
 │   ├── contact/       #   ContactForm, schema (Zod), services/contactService
@@ -223,6 +223,17 @@ Implementação: tokens em `src/index.css` (Tailwind v4).
 - Cores da marca (iguais nos dois temas): `bg-brand-orange`, `bg-brand-pink`.
 - **Proibido** cor hardcoded (`#fff`, `bg-orange-500`, etc.) nos componentes.
 - Tema escuro por classe (`<html class="dark">`), via `@custom-variant dark`. Justificativa: permite ao visitante escolher e o site lembrar a escolha, ao contrário de depender só de `prefers-color-scheme`. Por enquanto o `index.html` fixa `class="dark"`; o botão e a persistência vêm em `feature/theme-toggle`.
+#### Glassmorphism
+
+Estilo de vidro como parte da identidade visual. Implementação: utilitário `glass` e camada `.ambient` em `src/index.css`; componente `GlassCard`.
+
+Regras:
+- Blur máximo de 16px; vidro apenas em cartões e no cabeçalho; **nunca aninhar** elementos com vidro.
+- Fundo ambiente com gradientes radiais (barato), nunca `filter: blur` grande.
+- Texto sobre vidro com contraste mínimo de 4,5:1; usar `text-foreground` ou `text-muted`.
+- Todo elemento de vidro usa `glass` junto com `border` e um arredondamento (`rounded-2xl`).
+- Fallback sólido quando não há suporte a `backdrop-filter` ou com `prefers-reduced-transparency`.
+- Pendência: no tema claro, o "404" não deve usar laranja como cor de texto (regra da paleta).
 
 ## 7. Variáveis de ambiente
 
@@ -340,6 +351,7 @@ Evidência real do harness funcionando (usar no vídeo): na Etapa 1, o commit fo
 | D7 | Estrutura **por funcionalidade** (`features/`) com `components/` só para UI genérica | Alterar uma funcionalidade mexe numa pasta só; facilita explicar no vídeo | Estrutura um pouco maior que a por tipo de arquivo |
 | D8 | Paleta preto/branco/laranja/rosa bebê, texto preto sobre laranja e rosa | Contraste mínimo 4,5:1 (acessibilidade e Lighthouse) | Texto branco sobre botões coloridos |
 | D9 | Tema escuro por classe CSS (`dark`) e não por `prefers-color-scheme` | Permite escolha manual persistida (requisito 6) | Um pouco mais de código (Context + localStorage) |
+| D11 | Glassmorphism com utilitário `glass` + `GlassCard` + fundo ambiente em gradientes radiais | Identidade visual desejada pela dona; gradiente é barato e protege o Lighthouse mobile; vidro limitado a cartões e cabeçalho | Efeito de vidro em áreas grandes e vários níveis de transparência |
 
 ## 13. Pendências que dependem da dona (a IA deve pedir antes de usar)
 
@@ -359,6 +371,7 @@ Evidência real do harness funcionando (usar no vídeo): na Etapa 1, o commit fo
 | 01/11/2026 | Tailwind | Tailwind v4, remoção do CSS do template | 4, 10, 12 (D3) |
 | 01/11/2026 | `chore/folder-structure` | Estrutura de pastas, `.env.example`, `vercel.json`, limpeza do template | 3.12, 3.13, 5, 7, 12 (D6, D7) |
 | 01/11/2026 | `feature/routing-and-layout` | Paleta de cores e tokens de tema; reescrita completa deste arquivo com a regra de manutenção | 0, 6.1, 12 (D8, D9), 13, 14 |
+| 01/11/2026 | `feature/routing-and-layout` | Base glassmorphism (utilitário, GlassCard, fundo ambiente) e páginas Home, ProjectDetail, NotFound e ApiError | 3.7, 5.1, 6.1, 12 (D11), 14 |
 
 ## 15. Roteiro do vídeo (máx. 8 min, rosto e tela visíveis)
 
