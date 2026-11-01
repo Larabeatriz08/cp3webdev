@@ -50,41 +50,49 @@ Uma mudança sem atualização deste arquivo é considerada **incompleta**.
 Marcar `[x]` somente quando a dona confirmar que funciona.
 
 ### 3.1 Rotas
+
 - [ ] Rota individual por projeto: `/projetos/:slug`
 - [ ] Página 404 amigável
 - [ ] Página amigável para falha no carregamento da API
 - [ ] Link compartilhado abre direto na página certa, inclusive com refresh (`vercel.json` já criado; falta testar com as rotas)
 
 ### 3.2 Estados de carregamento
+
 - [ ] Todo dado de API exibe **loading**, **erro** e **lista vazia**
 - [ ] Skeleton nos cards de projeto; spinner no envio do formulário
 - [ ] Botão de enviar desabilitado durante o envio
 
 ### 3.3 Integração com GitHub
+
 - [ ] Projetos vêm da API do GitHub, sem cadastro manual
 - [ ] Card mostra descrição, linguagem e data da última atualização
 - [ ] Tratamento do limite de requisições (403/429)
 
 ### 3.4 Formulário de contato
+
 - [ ] Validação por campo com mensagem específica
 - [ ] Mensagem enviada por e-mail ao dono **e** salva no banco para o dashboard
 - [ ] Feedback de sucesso e de erro
 
 ### 3.5 Dashboard do dono
+
 - [ ] Login obrigatório, com redirecionamento
 - [ ] Lista de mensagens com "marcar como respondida"
 - [ ] Seleção de projetos em destaque na home
 
 ### 3.6 Preferências do visitante
+
 - [ ] Tema claro/escuro persistido (base de cores pronta; falta o botão e a persistência)
 
 ### 3.7 Interface
+
 - [ ] Responsivo, testado em celular e desktop
 - [ ] Componentes reaproveitados (mesmo `Button` e `Card`)
 - [ ] Identidade visual própria (paleta definida, ver 6.1)
 - [ ] Elemento 3D interativo na home
 
 ### 3.8 Performance
+
 - [ ] Lighthouse **mobile ≥ 80** (medido no site publicado)
 - [ ] Imagens otimizadas e com `loading="lazy"`
 - [ ] Dashboard e cena 3D com lazy loading, fora do bundle inicial
@@ -92,25 +100,30 @@ Marcar `[x]` somente quando a dona confirmar que funciona.
 - [ ] Sem requisições repetidas ao GitHub ao navegar (cache)
 
 ### 3.9 Testes
+
 - [ ] Validação do formulário
 - [ ] Bloqueio do dashboard sem login
 
 ### 3.10 Deploy
+
 - [x] URL pública (https://cp3webdev.vercel.app/)
 - [x] Deploy automático a cada push na `main` (Vercel ligada ao repositório)
 
 ### 3.11 Versionamento
+
 - [x] Commits no padrão Conventional Commits, **validados automaticamente** (commitlint + Husky)
 - [x] Estratégia de branches definida (GitHub Flow, seção 8)
 - [ ] Padrões descritos no README (pendente: README ainda é o do template)
 
 ### 3.12 Arquitetura e padronização
+
 - [x] Estrutura de pastas com responsabilidades claras (criada na Etapa 3)
 - [ ] Componentes pequenos, lógica separada da apresentação (acompanhar a cada feature)
 - [ ] Convenções de nomenclatura no README (já documentadas aqui)
 - [x] Lint e formatação automáticos antes de cada commit (Husky + lint-staged + ESLint + Prettier)
 
 ### 3.13 Repositório
+
 - [ ] Público, com histórico distribuído ao longo do prazo
 - [x] `.env` ignorado pelo Git e `.env.example` criado
 - [ ] README com sobre o projeto, tecnologias e como rodar
@@ -119,21 +132,21 @@ Marcar `[x]` somente quando a dona confirmar que funciona.
 
 Cada linha traz as alternativas comparadas, o critério e o que se aceita perder (material da parte 2 do vídeo).
 
-| Área | Escolha | Alternativas comparadas | Critério | O que aceitamos perder |
-|---|---|---|---|---|
-| Build/Framework | **Vite + React + TypeScript** | Next.js, Create React App | A atividade pede React; SPA simples, build rápido, deploy trivial na Vercel | SSR e SEO nativo do Next.js |
-| Versão do TypeScript | **5.x (fixada)** | TypeScript 7 (veio no template) | `typescript-eslint` só aceita versões abaixo da 6.1; a 7 quebrou a instalação (ver decisão D1) | Recursos novos da versão 7 |
-| Rotas | **React Router** | TanStack Router, wouter, Next.js | Padrão de mercado, lazy loading por rota, documentação abundante | Tipagem de rotas mais fraca que a do TanStack Router |
-| Dados/cache | **TanStack Query** | SWR, `useState` + `useEffect` | Cache, loading e erro prontos; evita requisições repetidas ao GitHub | Mais uma dependência |
-| Formulário | **React Hook Form + Zod** | Validação manual, Formik + Yup | Validação por campo, schema reaproveitável nos testes | Curva de aprendizado inicial |
-| Backend/Auth/DB | **Supabase** | Firebase, Appwrite, PocketBase, Node próprio | Auth + Postgres + regras de acesso prontas, plano gratuito, sem servidor para manter | Dependência de serviço externo |
-| E-mail | **EmailJS** | Formspree, backend próprio | Envio direto do front, sem servidor | Chave pública exposta no front (mitigar com limites no painel) |
-| Estado global | **Context API** (tema, auth) | Zustand, Redux Toolkit | Estado pequeno; zero dependência extra | Menos ferramentas de debug |
-| Estilo | **Tailwind CSS v4** | CSS Modules, MUI, shadcn/ui | Velocidade, bundle enxuto, tema escuro por classe, tokens de cor centralizados | Classes longas no JSX |
-| 3D | **React Three Fiber + drei** (lazy) | Three.js puro, Spline | Integra com React, controle fino de peso | Bundle pesado, mitigado com lazy loading |
-| Testes | **Vitest + Testing Library** | Playwright | Integra com Vite, rápido, suficiente para os 2 testes exigidos | Sem teste E2E em navegador real |
-| Qualidade | **ESLint + Prettier + Husky + lint-staged + commitlint** | Biome | Ecossistema maduro, exatamente o padrão pedido pela atividade | Mais arquivos de configuração |
-| Deploy | **Vercel** | Netlify, Hostinger | Exigido na entrega; deploy automático por push; detecta Vite sozinha | Lock-in leve |
+| Área                 | Escolha                                                  | Alternativas comparadas                      | Critério                                                                                       | O que aceitamos perder                                         |
+| -------------------- | -------------------------------------------------------- | -------------------------------------------- | ---------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| Build/Framework      | **Vite + React + TypeScript**                            | Next.js, Create React App                    | A atividade pede React; SPA simples, build rápido, deploy trivial na Vercel                    | SSR e SEO nativo do Next.js                                    |
+| Versão do TypeScript | **5.x (fixada)**                                         | TypeScript 7 (veio no template)              | `typescript-eslint` só aceita versões abaixo da 6.1; a 7 quebrou a instalação (ver decisão D1) | Recursos novos da versão 7                                     |
+| Rotas                | **React Router**                                         | TanStack Router, wouter, Next.js             | Padrão de mercado, lazy loading por rota, documentação abundante                               | Tipagem de rotas mais fraca que a do TanStack Router           |
+| Dados/cache          | **TanStack Query**                                       | SWR, `useState` + `useEffect`                | Cache, loading e erro prontos; evita requisições repetidas ao GitHub                           | Mais uma dependência                                           |
+| Formulário           | **React Hook Form + Zod**                                | Validação manual, Formik + Yup               | Validação por campo, schema reaproveitável nos testes                                          | Curva de aprendizado inicial                                   |
+| Backend/Auth/DB      | **Supabase**                                             | Firebase, Appwrite, PocketBase, Node próprio | Auth + Postgres + regras de acesso prontas, plano gratuito, sem servidor para manter           | Dependência de serviço externo                                 |
+| E-mail               | **EmailJS**                                              | Formspree, backend próprio                   | Envio direto do front, sem servidor                                                            | Chave pública exposta no front (mitigar com limites no painel) |
+| Estado global        | **Context API** (tema, auth)                             | Zustand, Redux Toolkit                       | Estado pequeno; zero dependência extra                                                         | Menos ferramentas de debug                                     |
+| Estilo               | **Tailwind CSS v4**                                      | CSS Modules, MUI, shadcn/ui                  | Velocidade, bundle enxuto, tema escuro por classe, tokens de cor centralizados                 | Classes longas no JSX                                          |
+| 3D                   | **React Three Fiber + drei** (lazy)                      | Three.js puro, Spline                        | Integra com React, controle fino de peso                                                       | Bundle pesado, mitigado com lazy loading                       |
+| Testes               | **Vitest + Testing Library**                             | Playwright                                   | Integra com Vite, rápido, suficiente para os 2 testes exigidos                                 | Sem teste E2E em navegador real                                |
+| Qualidade            | **ESLint + Prettier + Husky + lint-staged + commitlint** | Biome                                        | Ecossistema maduro, exatamente o padrão pedido pela atividade                                  | Mais arquivos de configuração                                  |
+| Deploy               | **Vercel**                                               | Netlify, Hostinger                           | Exigido na entrega; deploy automático por push; detecta Vite sozinha                           | Lock-in leve                                                   |
 
 Ainda **não instalados** (entram na branch da feature correspondente, para manter o histórico limpo): `react-router-dom`, `@tanstack/react-query`, `react-hook-form`, `zod`, `@hookform/resolvers`, `@supabase/supabase-js`, `@emailjs/browser`, `vitest`, `jsdom`, `@testing-library/*`, React Three Fiber.
 
@@ -165,18 +178,21 @@ Pastas ainda vazias contêm um `.gitkeep` (o Git não guarda pastas vazias). Rem
 Arquivos de configuração na raiz: `eslint.config.js`, `.prettierrc`, `.prettierignore`, `.lintstagedrc.json`, `commitlint.config.js`, `.gitattributes`, `.husky/`, `vite.config.ts`, `vercel.json`, `.env.example`, `.vscode/`.
 
 ### 5.2 Critério de divisão de componentes
+
 - `components/`: **sem** conhecimento de negócio nem de API; recebem tudo por props.
 - `features/`: tudo de uma funcionalidade fica junto (componente, hook, serviço, schema). Justificativa: mudar uma funcionalidade mexe em uma pasta só.
 - `pages/`: apenas compõem features e definem o layout da rota; sem lógica de dados.
 - **Regra de ouro:** componente não chama `fetch`/Supabase diretamente. Chamadas ficam em `services/` e são consumidas por hooks (`useX`) que usam TanStack Query.
 
 ### 5.3 Fluxo de dados
+
 ```
 Componente → hook (TanStack Query) → service → API (GitHub / Supabase / EmailJS)
                  ↑ cache, loading, erro, vazio
 ```
 
 ### 5.4 Caminho de uma alteração até o deploy
+
 ```
 git checkout -b feature/x → commits (lint-staged + commitlint rodam no commit)
 → push → Pull Request → merge na main → Vercel publica automaticamente
@@ -184,18 +200,19 @@ git checkout -b feature/x → commits (lint-staged + commitlint rodam no commit)
 
 ## 6. Convenções de código
 
-| Item | Convenção |
-|---|---|
-| Componentes | `PascalCase`, um por arquivo (`ProjectCard.tsx`) |
-| Hooks | `camelCase` começando com `use` (`useProjects.ts`) |
-| Serviços | `camelCase` terminando em `Api`/`Service` (`githubApi.ts`) |
-| Funções/variáveis | `camelCase` |
-| Constantes globais | `UPPER_SNAKE_CASE` |
-| Tipos/Interfaces | `PascalCase` (`Project`, `ContactMessage`) |
-| Pastas | minúsculas, `kebab-case` quando composto |
-| Testes | `NomeDoArquivo.test.tsx` |
+| Item               | Convenção                                                  |
+| ------------------ | ---------------------------------------------------------- |
+| Componentes        | `PascalCase`, um por arquivo (`ProjectCard.tsx`)           |
+| Hooks              | `camelCase` começando com `use` (`useProjects.ts`)         |
+| Serviços           | `camelCase` terminando em `Api`/`Service` (`githubApi.ts`) |
+| Funções/variáveis  | `camelCase`                                                |
+| Constantes globais | `UPPER_SNAKE_CASE`                                         |
+| Tipos/Interfaces   | `PascalCase` (`Project`, `ContactMessage`)                 |
+| Pastas             | minúsculas, `kebab-case` quando composto                   |
+| Testes             | `NomeDoArquivo.test.tsx`                                   |
 
 Regras adicionais:
+
 - TypeScript estrito; **proibido** `any` sem justificativa em comentário.
 - Componentes pequenos (referência: até ~100 linhas). Passou disso, dividir.
 - Todo componente que consome API trata **loading, erro e vazio**.
@@ -206,28 +223,32 @@ Regras adicionais:
 
 ### 6.1 Identidade visual (paleta)
 
-| Cor | Hex | Uso |
-|---|---|---|
-| Preto | `#0A0A0A` | Destaque; fundo no tema escuro; texto no tema claro |
-| Branco | `#FFFFFF` | Texto no tema escuro; fundo no tema claro |
-| Laranja | `#FF6A13` | Botão principal e destaques |
-| Rosa bebê | `#FFC1D9` | Botão secundário e detalhes |
+| Cor       | Hex       | Uso                                                 |
+| --------- | --------- | --------------------------------------------------- |
+| Preto     | `#0A0A0A` | Destaque; fundo no tema escuro; texto no tema claro |
+| Branco    | `#FFFFFF` | Texto no tema escuro; fundo no tema claro           |
+| Laranja   | `#FF6A13` | Botão principal e destaques                         |
+| Rosa bebê | `#FFC1D9` | Botão secundário e detalhes                         |
 
 Justificativa (acessibilidade e nota do Lighthouse):
+
 - Texto **preto** sobre laranja tem contraste ~7:1; texto **branco** sobre laranja fica ~2,9:1, abaixo do mínimo de 4,5:1.
 - Texto preto sobre rosa bebê passa com folga; o branco não.
 - **Regra:** texto sobre laranja e rosa é **sempre preto**. Laranja não é usado como cor de texto sobre fundo claro.
 
 Implementação: tokens em `src/index.css` (Tailwind v4).
+
 - Cores que mudam com o tema: `bg-background`, `bg-surface`, `text-foreground`, `text-muted`, `border-line`.
 - Cores da marca (iguais nos dois temas): `bg-brand-orange`, `bg-brand-pink`.
 - **Proibido** cor hardcoded (`#fff`, `bg-orange-500`, etc.) nos componentes.
 - Tema escuro por classe (`<html class="dark">`), via `@custom-variant dark`. Justificativa: permite ao visitante escolher e o site lembrar a escolha, ao contrário de depender só de `prefers-color-scheme`. Por enquanto o `index.html` fixa `class="dark"`; o botão e a persistência vêm em `feature/theme-toggle`.
+
 #### Glassmorphism
 
 Estilo de vidro como parte da identidade visual. Implementação: utilitário `glass` e camada `.ambient` em `src/index.css`; componente `GlassCard`.
 
 Regras:
+
 - Blur máximo de 16px; vidro apenas em cartões e no cabeçalho; **nunca aninhar** elementos com vidro.
 - Fundo ambiente com gradientes radiais (barato), nunca `filter: blur` grande.
 - Texto sobre vidro com contraste mínimo de 4,5:1; usar `text-foreground` ou `text-muted`.
@@ -248,11 +269,12 @@ VITE_EMAILJS_TEMPLATE_ID=
 VITE_EMAILJS_PUBLIC_KEY=
 ```
 
-Atualizar este bloco **e** o `.env.example` sempre que uma variável nascer. Na Vercel, as mesmas variáveis precisam ser cadastradas em *Settings → Environment Variables*.
+Atualizar este bloco **e** o `.env.example` sempre que uma variável nascer. Na Vercel, as mesmas variáveis precisam ser cadastradas em _Settings → Environment Variables_.
 
 ## 8. Git
 
 ### 8.1 Estratégia de branches: GitHub Flow
+
 - `main`: sempre estável e publicável; **cada push dispara o deploy**.
 - Cada funcionalidade em branch própria, aberta a partir da `main` e integrada por Pull Request.
 - Nomes: `feature/<nome>`, `fix/<nome>`, `chore/<nome>`, `docs/<nome>`, `test/<nome>`, `perf/<nome>`.
@@ -260,11 +282,13 @@ Atualizar este bloco **e** o `.env.example` sempre que uma variável nascer. Na 
 - Exceção registrada (D2): o setup inicial entrou direto na `main`, porque o repositório estava vazio e não havia base para um PR.
 
 ### 8.2 Commits: Conventional Commits
+
 Formato: `tipo(escopo opcional): descrição no imperativo, em português`
 
 Tipos permitidos: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `chore`.
 
 Exemplos:
+
 ```
 feat: adiciona validação do formulário de contato
 feat(dashboard): protege rota com redirecionamento para login
@@ -278,6 +302,7 @@ chore: configura Husky e lint-staged
 Regras: um assunto por commit; commits pequenos e frequentes ao longo dos dias; a IA **sempre** sugere a mensagem no padrão ao entregar código, escrita separadamente. A regra `subject-case` do commitlint está desligada para não bloquear descrições em português (D4).
 
 ### 8.3 Ordem das branches (garante histórico distribuído)
+
 1. ✅ Setup inicial: Vite, TypeScript, ESLint, Prettier, Husky, lint-staged, commitlint (entrou direto na `main`)
 2. ✅ `chore/...`: Tailwind CSS
 3. ✅ `chore/folder-structure`: estrutura de pastas, limpeza, `.env.example`, `vercel.json`
@@ -318,17 +343,18 @@ Regras: um assunto por commit; commits pequenos e frequentes ao longo dos dias; 
 
 Itens que devem estar **versionados no repositório**:
 
-| Item | Arquivo/local | Para que serve |
-|---|---|---|
-| Instruções do projeto | `CLAUDE.md` (este arquivo) | A IA lê arquitetura, convenções, commits e branches antes de cada tarefa |
-| Convenções para humanos | `README.md` | As mesmas regras, para quem abre o repositório |
-| Guardrails automáticos | `eslint.config.js`, `.prettierrc`, `commitlint.config.js`, `.husky/` | Mesmo que a IA erre, o hook bloqueia código ou commit fora do padrão |
-| Configuração do editor | `.vscode/settings.json`, `.vscode/extensions.json` | Formata ao salvar e recomenda as extensões |
-| Skills (opcional) | `.claude/skills/` | Receitas repetíveis (ex.: "criar feature nova") |
-| MCPs (opcional) | `.mcp.json` | Ex.: GitHub, para ler issues e PRs |
-| Agentes (opcional) | `.claude/agents/` | Ex.: revisor de PR que confere o checklist da seção 3 |
+| Item                    | Arquivo/local                                                        | Para que serve                                                           |
+| ----------------------- | -------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| Instruções do projeto   | `CLAUDE.md` (este arquivo)                                           | A IA lê arquitetura, convenções, commits e branches antes de cada tarefa |
+| Convenções para humanos | `README.md`                                                          | As mesmas regras, para quem abre o repositório                           |
+| Guardrails automáticos  | `eslint.config.js`, `.prettierrc`, `commitlint.config.js`, `.husky/` | Mesmo que a IA erre, o hook bloqueia código ou commit fora do padrão     |
+| Configuração do editor  | `.vscode/settings.json`, `.vscode/extensions.json`                   | Formata ao salvar e recomenda as extensões                               |
+| Skills (opcional)       | `.claude/skills/`                                                    | Receitas repetíveis (ex.: "criar feature nova")                          |
+| MCPs (opcional)         | `.mcp.json`                                                          | Ex.: GitHub, para ler issues e PRs                                       |
+| Agentes (opcional)      | `.claude/agents/`                                                    | Ex.: revisor de PR que confere o checklist da seção 3                    |
 
 Preencher quando definido:
+
 - **Ferramenta e modelo usados:** Claude (chat web) para planejar e gerar código; _confirmar modelo e justificar a escolha_
 - **Skills configuradas:** `______`
 - **MCPs configurados:** `______`
@@ -340,18 +366,18 @@ Evidência real do harness funcionando (usar no vídeo): na Etapa 1, o commit fo
 
 ## 12. Decisões tomadas durante o projeto
 
-| # | Decisão | Motivo | O que aceitamos perder |
-|---|---|---|---|
-| D1 | Fixar **TypeScript 5** (`npm install -D typescript@5`) | O template trouxe o TS 7.0.2, e o `typescript-eslint` exige versão abaixo da 6.1; o npm abortou com `ERESOLVE` e o `@vitejs/plugin-react` não foi instalado. Evitamos `--force`/`--legacy-peer-deps` porque escondem o conflito | Recursos da versão 7 |
-| D2 | Setup inicial **direto na `main`**; branch renomeada de `chore/setup-project` para `main` | O repositório estava vazio, então o primeiro push criou a única branch como padrão e não havia base para um PR | Um PR para o setup inicial |
-| D3 | **Tailwind v4** com `@tailwindcss/vite`, sem `tailwind.config.js` | Configuração mínima; tokens declarados com `@theme` no próprio CSS | Plugins antigos que exigem config em JS |
-| D4 | `subject-case` do commitlint **desligado** | As descrições dos commits são em português e a regra padrão bloqueia caixas válidas | Verificação de caixa da descrição |
-| D5 | `.gitattributes` com `.husky/* text eol=lf` | No Windows, CRLF nos hooks causa falha ao executar | Nenhuma relevante |
-| D6 | `vercel.json` com rewrite de todas as rotas para `/index.html` | Numa SPA, abrir ou atualizar `/projetos/x` daria 404 do servidor; assim o React Router decide a página. A Vercel serve antes os arquivos reais (CSS, imagens) | Nenhuma relevante |
-| D7 | Estrutura **por funcionalidade** (`features/`) com `components/` só para UI genérica | Alterar uma funcionalidade mexe numa pasta só; facilita explicar no vídeo | Estrutura um pouco maior que a por tipo de arquivo |
-| D8 | Paleta preto/branco/laranja/rosa bebê, texto preto sobre laranja e rosa | Contraste mínimo 4,5:1 (acessibilidade e Lighthouse) | Texto branco sobre botões coloridos |
-| D9 | Tema escuro por classe CSS (`dark`) e não por `prefers-color-scheme` | Permite escolha manual persistida (requisito 6) | Um pouco mais de código (Context + localStorage) |
-| D11 | Glassmorphism com utilitário `glass` + `GlassCard` + fundo ambiente em gradientes radiais | Identidade visual desejada pela dona; gradiente é barato e protege o Lighthouse mobile; vidro limitado a cartões e cabeçalho | Efeito de vidro em áreas grandes e vários níveis de transparência |
+| #   | Decisão                                                                                   | Motivo                                                                                                                                                                                                                          | O que aceitamos perder                                            |
+| --- | ----------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| D1  | Fixar **TypeScript 5** (`npm install -D typescript@5`)                                    | O template trouxe o TS 7.0.2, e o `typescript-eslint` exige versão abaixo da 6.1; o npm abortou com `ERESOLVE` e o `@vitejs/plugin-react` não foi instalado. Evitamos `--force`/`--legacy-peer-deps` porque escondem o conflito | Recursos da versão 7                                              |
+| D2  | Setup inicial **direto na `main`**; branch renomeada de `chore/setup-project` para `main` | O repositório estava vazio, então o primeiro push criou a única branch como padrão e não havia base para um PR                                                                                                                  | Um PR para o setup inicial                                        |
+| D3  | **Tailwind v4** com `@tailwindcss/vite`, sem `tailwind.config.js`                         | Configuração mínima; tokens declarados com `@theme` no próprio CSS                                                                                                                                                              | Plugins antigos que exigem config em JS                           |
+| D4  | `subject-case` do commitlint **desligado**                                                | As descrições dos commits são em português e a regra padrão bloqueia caixas válidas                                                                                                                                             | Verificação de caixa da descrição                                 |
+| D5  | `.gitattributes` com `.husky/* text eol=lf`                                               | No Windows, CRLF nos hooks causa falha ao executar                                                                                                                                                                              | Nenhuma relevante                                                 |
+| D6  | `vercel.json` com rewrite de todas as rotas para `/index.html`                            | Numa SPA, abrir ou atualizar `/projetos/x` daria 404 do servidor; assim o React Router decide a página. A Vercel serve antes os arquivos reais (CSS, imagens)                                                                   | Nenhuma relevante                                                 |
+| D7  | Estrutura **por funcionalidade** (`features/`) com `components/` só para UI genérica      | Alterar uma funcionalidade mexe numa pasta só; facilita explicar no vídeo                                                                                                                                                       | Estrutura um pouco maior que a por tipo de arquivo                |
+| D8  | Paleta preto/branco/laranja/rosa bebê, texto preto sobre laranja e rosa                   | Contraste mínimo 4,5:1 (acessibilidade e Lighthouse)                                                                                                                                                                            | Texto branco sobre botões coloridos                               |
+| D9  | Tema escuro por classe CSS (`dark`) e não por `prefers-color-scheme`                      | Permite escolha manual persistida (requisito 6)                                                                                                                                                                                 | Um pouco mais de código (Context + localStorage)                  |
+| D11 | Glassmorphism com utilitário `glass` + `GlassCard` + fundo ambiente em gradientes radiais | Identidade visual desejada pela dona; gradiente é barato e protege o Lighthouse mobile; vidro limitado a cartões e cabeçalho                                                                                                    | Efeito de vidro em áreas grandes e vários níveis de transparência |
 
 ## 13. Pendências que dependem da dona (a IA deve pedir antes de usar)
 
@@ -365,23 +391,23 @@ Evidência real do harness funcionando (usar no vídeo): na Etapa 1, o commit fo
 
 ## 14. Registro de mudanças
 
-| Data | Etapa / branch | Mudança | Seções alteradas |
-|---|---|---|---|
-| 01/11/2026 | Setup inicial | Vite + React + TS, ESLint, Prettier, Husky, lint-staged, commitlint; deploy na Vercel | 3.10, 3.11, 3.12, 4, 9, 12 (D1, D2, D4, D5) |
-| 01/11/2026 | Tailwind | Tailwind v4, remoção do CSS do template | 4, 10, 12 (D3) |
-| 01/11/2026 | `chore/folder-structure` | Estrutura de pastas, `.env.example`, `vercel.json`, limpeza do template | 3.12, 3.13, 5, 7, 12 (D6, D7) |
-| 01/11/2026 | `feature/routing-and-layout` | Paleta de cores e tokens de tema; reescrita completa deste arquivo com a regra de manutenção | 0, 6.1, 12 (D8, D9), 13, 14 |
-| 01/11/2026 | `feature/routing-and-layout` | Base glassmorphism (utilitário, GlassCard, fundo ambiente) e páginas Home, ProjectDetail, NotFound e ApiError | 3.7, 5.1, 6.1, 12 (D11), 14 |
+| Data       | Etapa / branch               | Mudança                                                                                                       | Seções alteradas                            |
+| ---------- | ---------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
+| 01/11/2026 | Setup inicial                | Vite + React + TS, ESLint, Prettier, Husky, lint-staged, commitlint; deploy na Vercel                         | 3.10, 3.11, 3.12, 4, 9, 12 (D1, D2, D4, D5) |
+| 01/11/2026 | Tailwind                     | Tailwind v4, remoção do CSS do template                                                                       | 4, 10, 12 (D3)                              |
+| 01/11/2026 | `chore/folder-structure`     | Estrutura de pastas, `.env.example`, `vercel.json`, limpeza do template                                       | 3.12, 3.13, 5, 7, 12 (D6, D7)               |
+| 01/11/2026 | `feature/routing-and-layout` | Paleta de cores e tokens de tema; reescrita completa deste arquivo com a regra de manutenção                  | 0, 6.1, 12 (D8, D9), 13, 14                 |
+| 01/11/2026 | `feature/routing-and-layout` | Base glassmorphism (utilitário, GlassCard, fundo ambiente) e páginas Home, ProjectDetail, NotFound e ApiError | 3.7, 5.1, 6.1, 12 (D11), 14                 |
 
 ## 15. Roteiro do vídeo (máx. 8 min, rosto e tela visíveis)
 
-| Tempo | Parte | Conteúdo |
-|---|---|---|
-| 0:00–0:30 | Abertura | Quem sou, o que o site faz, demo rápida |
-| 0:30–3:00 | **1. Stack e arquitetura** | Tecnologias e conexões; diagrama de pastas e fluxo de dados; critério de divisão dos componentes; caminho branch → PR → deploy |
-| 3:00–5:00 | **2. Justificativas** | Para cada escolha: o que comparei, critério, o que aceitei perder (seções 4 e 12) |
-| 5:00–7:30 | **3. Harness de IA** | Ferramenta/modelo e por quê; mostrar `CLAUDE.md`, skills, MCPs, agentes e hooks no repositório; como isso faz a IA seguir arquitetura, código, commits e branches |
-| 7:30–8:00 | Fechamento | Resultado (Lighthouse, deploy) e aprendizados |
+| Tempo     | Parte                      | Conteúdo                                                                                                                                                          |
+| --------- | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0:00–0:30 | Abertura                   | Quem sou, o que o site faz, demo rápida                                                                                                                           |
+| 0:30–3:00 | **1. Stack e arquitetura** | Tecnologias e conexões; diagrama de pastas e fluxo de dados; critério de divisão dos componentes; caminho branch → PR → deploy                                    |
+| 3:00–5:00 | **2. Justificativas**      | Para cada escolha: o que comparei, critério, o que aceitei perder (seções 4 e 12)                                                                                 |
+| 5:00–7:30 | **3. Harness de IA**       | Ferramenta/modelo e por quê; mostrar `CLAUDE.md`, skills, MCPs, agentes e hooks no repositório; como isso faz a IA seguir arquitetura, código, commits e branches |
+| 7:30–8:00 | Fechamento                 | Resultado (Lighthouse, deploy) e aprendizados                                                                                                                     |
 
 Publicar no YouTube como **não listado** (feito pela dona).
 
