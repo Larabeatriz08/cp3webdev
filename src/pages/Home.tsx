@@ -1,12 +1,13 @@
-import GlassCard from '../components/GlassCard'
+import ProjectList from '../features/projects/components/ProjectList'
 
 export default function Home() {
   return (
-    <GlassCard>
-      <h1 className="text-4xl font-bold">Página inicial</h1>
-      <p className="mt-2 text-muted">
-        O conteúdo de apresentação será adicionado em uma próxima etapa.
-      </p>
-    </GlassCard>
+    <section>
+      <h1 className="text-4xl font-bold">Projetos</h1>
+      <p className="mt-2 text-muted">Repositórios públicos carregados diretamente do GitHub.</p>
+      <div className="mt-8">
+        <ProjectList />
+      </div>
+    </section>
   )
 }
