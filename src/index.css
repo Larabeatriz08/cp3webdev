@@ -3,8 +3,9 @@
 /* Tema escuro controlado por classe (<html class="dark">) */
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* Tema claro (valores padrão) */
+/* Tema claro (valores padrÃ£o) */
 :root {
+  --danger: #b91c1c;
   --bg: #ffffff;
   --surface: #f5f5f5;
   --fg: #0a0a0a;
@@ -22,6 +23,7 @@
 
 /* Tema escuro */
 .dark {
+  --danger: #f87171;
   --bg: #0a0a0a;
   --surface: #141414;
   --fg: #ffffff;
@@ -39,6 +41,7 @@
 
 /* Cores que mudam com o tema (viram classes: bg-background, text-foreground...) */
 @theme inline {
+  --color-danger: var(--danger);
   --color-background: var(--bg);
   --color-surface: var(--surface);
   --color-foreground: var(--fg);
@@ -60,12 +63,12 @@
   -webkit-backdrop-filter: blur(16px) saturate(140%);
   backdrop-filter: blur(16px) saturate(140%);
 
-  /* Navegador sem suporte a backdrop-filter: fundo sólido legível */
+  /* Navegador sem suporte a backdrop-filter: fundo sÃ³lido legÃ­vel */
   @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
     background-color: var(--glass-bg-solid);
   }
 
-  /* Quem pede menos transparência no sistema também recebe fundo sólido */
+  /* Quem pede menos transparÃªncia no sistema tambÃ©m recebe fundo sÃ³lido */
   @media (prefers-reduced-transparency: reduce) {
     background-color: var(--glass-bg-solid);
     -webkit-backdrop-filter: none;
@@ -73,7 +76,7 @@
   }
 }
 
-/* Fundo ambiente: dá cor para o vidro ter o que borrar */
+/* Fundo ambiente: dÃ¡ cor para o vidro ter o que borrar */
 .ambient {
   position: fixed;
   inset: 0;
