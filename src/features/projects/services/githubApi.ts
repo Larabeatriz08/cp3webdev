@@ -1,4 +1,4 @@
-import type { Project } from '../types/project'
+import type { Project } from '../../../types/project'
 
 const API_URL = 'https://api.github.com'
 
@@ -75,14 +75,18 @@ async function request(path: string): Promise<Response> {
 }
 
 export async function fetchProjects(username: string): Promise<Project[]> {
-  const response = await request(`/users/${username}/repos?per_page=100&sort=updated`)
+  const response = await request(
+    `/users/${encodeURIComponent(username)}/repos?per_page=100&sort=updated`,
+  )
   const repos: GithubRepo[] = await response.json()
 
   return repos.filter((repo) => !repo.fork && !repo.archived).map(toProject)
 }
 
 export async function fetchProject(username: string, slug: string): Promise<Project> {
-  const response = await request(`/repos/${username}/${slug}`)
+  const response = await request(
+    `/repos/${encodeURIComponent(username)}/${encodeURIComponent(slug)}`,
+  )
   const repo: GithubRepo = await response.json()
 
   return toProject(repo)
