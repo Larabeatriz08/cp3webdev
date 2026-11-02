@@ -15,7 +15,12 @@ export default function Layout() {
           <NavLink to="/" className="font-bold">
             Portfólio
           </NavLink>
-          <ThemeToggle />
+          <div className="flex items-center gap-4">
+            <NavLink to="/contato" className="font-medium hover:underline">
+              Contato
+            </NavLink>
+            <ThemeToggle />
+          </div>
         </nav>
       </header>
       <main className="mx-auto w-full max-w-5xl flex-1 px-4 py-8">
